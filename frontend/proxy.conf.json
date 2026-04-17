@@ -1,6 +1,6 @@
 {
   "/api": {
-    "target": "http://localhost:8080",
+    "target": "https://proyectoweb-wgny.onrender.com",
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"
