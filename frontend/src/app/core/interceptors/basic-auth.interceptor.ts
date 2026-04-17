@@ -4,15 +4,14 @@ import { AuthService } from '../services/auth.service';
 
 export const basicAuthInterceptor: HttpInterceptorFn = (req, next) => {
   const auth = inject(AuthService);
-  if (!auth.isLoggedIn()) {
+  const token = auth.basicToken();
+  if (!token || token === btoa(':')) {
     return next(req);
   }
-
   const authenticated = req.clone({
     setHeaders: {
-      Authorization: `Basic ${auth.basicToken()}`
+      Authorization: `Basic ${token}`
     }
   });
-
   return next(authenticated);
 };
