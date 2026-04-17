@@ -28,7 +28,7 @@ export class AuthService {
     localStorage.setItem('inv_user', username);
     localStorage.setItem('inv_pass', password);
 
-    return this.http.get<{ username: string; role: RoleName; employeeId: number | null }>(`${environment.apiUrl}/api/auth/me`).pipe(
+    return this.http.get<{ username: string; role: RoleName; employeeId: number | null }>('/api/auth/me').pipe(
       tap((profile) => {
         this.roleState.set(profile.role);
         this.employeeIdState.set(profile.employeeId ?? null);
