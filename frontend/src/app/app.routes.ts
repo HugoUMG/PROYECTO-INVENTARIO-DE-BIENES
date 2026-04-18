@@ -43,6 +43,7 @@ export const routes: Routes = [
     data: { roles: ['ADMINISTRADOR', 'FINANZAS', 'INVENTARIO'] },
     loadComponent: () => import('./features/reportes/pages/reportes.page').then((m) => m.ReportesPage)
   },
+<<<<<<< HEAD
 
   {
     path: 'catalogos',
@@ -57,6 +58,8 @@ export const routes: Routes = [
     data: { roles: ['ADMINISTRADOR'] },
     loadComponent: () => import('./features/admin-empleados.page').then((m) => m.AdminEmpleadosPage)
   },
+=======
+>>>>>>> viejo/main
   {
     path: 'empleado',
     canActivate: [authGuard],

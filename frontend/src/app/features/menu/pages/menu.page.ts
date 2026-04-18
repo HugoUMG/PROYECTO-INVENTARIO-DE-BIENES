@@ -13,13 +13,21 @@ import { AuthService } from '../../../core/services/auth.service';
       <div class="card">
         <div class="between">
           <div>
+<<<<<<< HEAD
             <h1>Menú Principal</h1>
+=======
+            <h1>Interfaz General (Menú)</h1>
+>>>>>>> viejo/main
             <p class="muted">Sesión activa: <strong>{{ auth.username() }}</strong> ({{ auth.role() }})</p>
           </div>
           <button type="button" (click)="logout()">Cerrar sesión</button>
         </div>
 
+<<<<<<< HEAD
         <p>Modulos:</p>
+=======
+        <p>Selecciona un módulo según permisos:</p>
+>>>>>>> viejo/main
         <div class="grid grid-3">
           <button *ngIf="auth.canAccessModule('adquisiciones')" type="button" (click)="go('/adquisiciones')">Adquisiciones</button>
           <button *ngIf="auth.canAccessModule('inventario')" type="button" (click)="go('/inventario')">Inventario</button>
@@ -27,14 +35,22 @@ import { AuthService } from '../../../core/services/auth.service';
           <button *ngIf="auth.canAccessModule('bajas')" type="button" (click)="go('/bajas')">Bajas</button>
           <button *ngIf="auth.canAccessModule('reportes')" type="button" (click)="go('/reportes')">Reportes</button>
           <button *ngIf="auth.canAccessModule('empleado')" type="button" (click)="go('/empleado')">Mis activos</button>
+<<<<<<< HEAD
           <button *ngIf="auth.canAccessModule('catalogos')" type="button" (click)="go('/catalogos')">Proveedores y partidas</button>
           <button *ngIf="auth.canAccessModule('admin-empleados')" type="button" (click)="go('/admin-empleados')">Empleados</button>
+=======
+>>>>>>> viejo/main
         </div>
       </div>
 
       <div class="card" *ngIf="auth.isAdmin()">
+<<<<<<< HEAD
         <h2>Creación de usuario</h2>
         <p class="muted">Registro de creación de usuarios en el sistema.</p>
+=======
+        <h2>Alta de usuario (solo admin)</h2>
+        <p class="muted">Este registro crea usuarios en el backend para autenticación HTTP Basic.</p>
+>>>>>>> viejo/main
 
         <form [formGroup]="userForm" (ngSubmit)="createUser()" class="grid grid-3">
           <input formControlName="username" placeholder="nuevo usuario" />

@@ -1,5 +1,6 @@
 export type TagType = 'QR' | 'RFID';
 
+<<<<<<< HEAD
 export interface Supplier {
   id: number;
   name: string;
@@ -16,6 +17,8 @@ export interface BudgetLine {
   allocatedAmount: number;
 }
 
+=======
+>>>>>>> viejo/main
 export interface PurchaseInvoice {
   id: number;
   invoiceNumber: string;
@@ -56,13 +59,22 @@ export interface Employee {
 export interface Assignment {
   id: number;
   asset: Asset;
+<<<<<<< HEAD
   employee?: Employee;
+=======
+  employee: Employee;
+>>>>>>> viejo/main
   assignedAt: string;
   expectedReturnAt?: string;
   returnedAt?: string;
   status: string;
+<<<<<<< HEAD
   digitalSignature?: string;
   receiptConfirmation?: string;
+=======
+  digitalSignature: string;
+  receiptConfirmation: string;
+>>>>>>> viejo/main
 }
 
 export interface Disposal {
@@ -82,6 +94,10 @@ export interface InvestedSummary {
   totalInvested: number;
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> viejo/main
 export interface AdminUser {
   id: number;
   username: string;

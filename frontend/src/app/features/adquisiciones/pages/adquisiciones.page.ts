@@ -1,8 +1,14 @@
 import { CommonModule } from '@angular/common';
+<<<<<<< HEAD
 import { Component, OnInit, inject } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { BudgetLine, Supplier } from '../../../core/models/api.models';
+=======
+import { Component, inject } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { RouterLink } from '@angular/router';
+>>>>>>> viejo/main
 import { AssetsApiService } from '../../../core/services/assets-api.service';
 
 @Component({
@@ -35,6 +41,7 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
         </form>
         <p *ngIf="message">{{ message }}</p>
       </div>
+<<<<<<< HEAD
 
       <div class="card">
         <h3>Lista de proveedores</h3>
@@ -55,12 +62,21 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
   `
 })
 export class AdquisicionesPage implements OnInit {
+=======
+    </section>
+  `
+})
+export class AdquisicionesPage {
+>>>>>>> viejo/main
   private readonly fb = inject(FormBuilder);
   private readonly api = inject(AssetsApiService);
 
   message = '';
+<<<<<<< HEAD
   suppliers: Supplier[] = [];
   budgetLines: BudgetLine[] = [];
+=======
+>>>>>>> viejo/main
   readonly invoiceForm = this.fb.group({
     invoiceNumber: ['', Validators.required],
     invoiceDate: ['', Validators.required],
@@ -70,6 +86,7 @@ export class AdquisicionesPage implements OnInit {
     notes: ['']
   });
 
+<<<<<<< HEAD
   ngOnInit(): void {
     this.loadCatalogs();
   }
@@ -105,5 +122,21 @@ export class AdquisicionesPage implements OnInit {
         },
         error: (err) => (this.message = err?.error?.error ?? 'No fue posible registrar la factura.')
       });
+=======
+  submit(): void {
+    if (this.invoiceForm.invalid) return;
+    const payload = this.invoiceForm.getRawValue();
+    this.api.createInvoice({
+      invoiceNumber: payload.invoiceNumber!,
+      invoiceDate: payload.invoiceDate!,
+      totalAmount: payload.totalAmount!,
+      supplierId: payload.supplierId!,
+      budgetLineId: payload.budgetLineId!,
+      notes: payload.notes ?? undefined
+    }).subscribe({
+      next: (invoice) => (this.message = `Factura registrada: ${invoice.invoiceNumber}`),
+      error: (err) => (this.message = err?.error?.error ?? 'No fue posible registrar la factura.')
+    });
+>>>>>>> viejo/main
   }
 }

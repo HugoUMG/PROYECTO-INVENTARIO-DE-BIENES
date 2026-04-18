@@ -57,12 +57,20 @@ export class AuthService {
     return btoa(`${this.usernameState()}:${this.passwordState()}`);
   }
 
+<<<<<<< HEAD
   canAccessModule(module: 'adquisiciones' | 'inventario' | 'asignaciones' | 'bajas' | 'reportes' | 'empleado' | 'catalogos' | 'admin-empleados'): boolean {
+=======
+  canAccessModule(module: 'adquisiciones' | 'inventario' | 'asignaciones' | 'bajas' | 'reportes' | 'empleado'): boolean {
+>>>>>>> viejo/main
     const role = this.roleState();
     if (!role) return false;
     if (role === 'ADMINISTRADOR') return true;
     if (role === 'COMPRAS') return module === 'adquisiciones';
+<<<<<<< HEAD
     if (role === 'INVENTARIO') return module === 'inventario' || module === 'asignaciones' || module === 'bajas' || module === 'reportes' || module === 'catalogos';
+=======
+    if (role === 'INVENTARIO') return module === 'inventario' || module === 'asignaciones' || module === 'bajas' || module === 'reportes';
+>>>>>>> viejo/main
     if (role === 'FINANZAS') return module === 'reportes';
     return module === 'empleado';
   }

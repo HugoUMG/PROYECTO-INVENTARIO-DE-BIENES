@@ -1,7 +1,11 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+<<<<<<< HEAD
 import { AdminUser, Asset, Assignment, BudgetLine, Department, Disposal, Employee, InvestedSummary, PurchaseInvoice, Supplier } from '../models/api.models';
+=======
+import { AdminUser, Asset, Assignment, Disposal, InvestedSummary, PurchaseInvoice } from '../models/api.models';
+>>>>>>> viejo/main
 
 @Injectable({ providedIn: 'root' })
 export class AssetsApiService {
@@ -20,6 +24,7 @@ export class AssetsApiService {
     return this.http.post<PurchaseInvoice>(`${this.base}/acquisitions/invoices`, payload);
   }
 
+<<<<<<< HEAD
   createSupplier(payload: { name: string; taxId: string; email: string; phone?: string }): Observable<Supplier> {
     return this.http.post<Supplier>(`${this.base}/acquisitions/suppliers`, payload);
   }
@@ -36,6 +41,8 @@ export class AssetsApiService {
     return this.http.get<BudgetLine[]>(`${this.base}/acquisitions/budget-lines`);
   }
 
+=======
+>>>>>>> viejo/main
   createAsset(payload: {
     assetCode?: string;
     name: string;
@@ -45,7 +52,11 @@ export class AssetsApiService {
     acquisitionCost: number;
     tagType: 'QR' | 'RFID';
     tagValue: string;
+<<<<<<< HEAD
     location?: string;
+=======
+    location: string;
+>>>>>>> viejo/main
     purchaseInvoiceId: number;
   }): Observable<Asset> {
     return this.http.post<Asset>(`${this.base}/inventory/assets`, payload);
@@ -55,6 +66,7 @@ export class AssetsApiService {
     return this.http.get<Asset[]>(`${this.base}/inventory/assets`);
   }
 
+<<<<<<< HEAD
   inventoryAssetQr(assetId: number): string {
     return `${this.base}/inventory/assets/${assetId}/qr.png`;
   }
@@ -63,11 +75,18 @@ export class AssetsApiService {
     return `${this.base}/employee/me/assets/${assetId}/qr.png`;
   }
 
+=======
+>>>>>>> viejo/main
   createAssignment(payload: {
     assetId: number;
     employeeId: number;
     assignedAt: string;
     expectedReturnAt?: string;
+<<<<<<< HEAD
+=======
+    digitalSignature: string;
+    receiptConfirmation: string;
+>>>>>>> viejo/main
   }): Observable<Assignment> {
     return this.http.post<Assignment>(`${this.base}/assignments`, payload);
   }
@@ -84,6 +103,7 @@ export class AssetsApiService {
     return this.http.get<Assignment[]>(`${this.base}/assignments/returns`);
   }
 
+<<<<<<< HEAD
   myAssignments(): Observable<Assignment[]> {
     return this.http.get<Assignment[]>(`${this.base}/employee/me/assignments`);
   }
@@ -106,21 +126,34 @@ export class AssetsApiService {
 
   requestDisposalByEmployee(payload: { assetId: number; reason: string }): Observable<Disposal> {
     return this.http.post<Disposal>(`${this.base}/employee/me/disposals`, payload);
+=======
+  requestDisposal(payload: {
+    assetId: number;
+    reason: string;
+    disposalType: string;
+    requestedBy: string;
+  }): Observable<Disposal> {
+    return this.http.post<Disposal>(`${this.base}/disposals`, payload);
+>>>>>>> viejo/main
   }
 
   approveDisposal(disposalId: number, payload: { approvedBy: string; finalValue: number }): Observable<Disposal> {
     return this.http.post<Disposal>(`${this.base}/disposals/${disposalId}/approve`, payload);
   }
 
+<<<<<<< HEAD
   rejectDisposal(disposalId: number, payload: { approvedBy: string }): Observable<Disposal> {
     return this.http.post<Disposal>(`${this.base}/disposals/${disposalId}/reject`, payload);
   }
 
+=======
+>>>>>>> viejo/main
   listPendingDisposals(): Observable<Disposal[]> {
     return this.http.get<Disposal[]>(`${this.base}/disposals/pending`);
   }
 
 
+<<<<<<< HEAD
   listDepartments(): Observable<Department[]> {
     return this.http.get<Department[]>(`${this.base}/data/departments`);
   }
@@ -133,10 +166,19 @@ export class AssetsApiService {
     return this.http.get<Employee[]>(`${this.base}/data/employees`);
   }
 
+=======
+>>>>>>> viejo/main
   createUser(payload: { username: string; password: string; role: 'ADMINISTRADOR' | 'COMPRAS' | 'INVENTARIO' | 'EMPLEADO' | 'FINANZAS'; employeeId?: number }): Observable<AdminUser> {
     return this.http.post<AdminUser>(`${this.base}/admin/users`, payload);
   }
 
+<<<<<<< HEAD
+=======
+  myAssignments(): Observable<Assignment[]> {
+    return this.http.get<Assignment[]>(`${this.base}/employee/me/assignments`);
+  }
+
+>>>>>>> viejo/main
   investedSummary(): Observable<InvestedSummary> {
     return this.http.get<InvestedSummary>(`${this.base}/reports/invested-assets/summary`);
   }
@@ -156,8 +198,11 @@ export class AssetsApiService {
       responseType: 'blob'
     });
   }
+<<<<<<< HEAD
 
   exportMyAssetsPdf(): Observable<Blob> {
     return this.http.get(`${this.base}/reports/employee/me/export`, { responseType: 'blob' });
   }
+=======
+>>>>>>> viejo/main
 }

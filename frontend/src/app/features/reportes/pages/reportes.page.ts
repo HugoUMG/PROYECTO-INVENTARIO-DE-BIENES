@@ -14,7 +14,11 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
 
       <div class="card">
         <button type="button" (click)="loadSummary()">Cargar total invertido</button>
+<<<<<<< HEAD
         <p *ngIf="totalInvested !== null"><strong>{{ totalInvested | currency : 'Q' }}</strong></p>
+=======
+        <p *ngIf="totalInvested !== null"><strong>{{ totalInvested | currency : 'USD' }}</strong></p>
+>>>>>>> viejo/main
       </div>
 
       <div class="card">
@@ -24,6 +28,7 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
           </label>
           <button type="submit">Reporte por empleado</button>
         </form>
+<<<<<<< HEAD
         <table *ngIf="employeeAssignments.length">
           <thead><tr><th>Empleado ID</th><th>Código</th><th>Nombre</th><th>Valor unitario</th><th>Asignación</th><th>Devolución</th><th>Estado</th></tr></thead>
           <tbody>
@@ -46,6 +51,14 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
           <thead><tr><th>ID</th><th>Código</th><th>Nombre</th><th>Asignado a</th><th>Valor</th><th>Ingreso</th><th>Estado</th></tr></thead>
           <tbody><tr *ngFor="let asset of upcoming"><td>{{ asset.id }}</td><td>{{ asset.assetCode }}</td><td>{{ asset.name }}</td><td>{{ asset.currentCustodian?.id || 'desasignado' }}</td><td>{{ asset.acquisitionCost }}</td><td>{{ asset.acquisitionDate }}</td><td>{{ asset.status }}</td></tr></tbody>
         </table>
+=======
+        <ul><li *ngFor="let item of employeeAssignments">{{ item.asset.assetCode }} - {{ item.asset.name }} - {{ item.status }}</li></ul>
+      </div>
+
+      <div class="card">
+        <button type="button" (click)="loadUpcomingDisposals()">Próximos a baja</button>
+        <ul><li *ngFor="let asset of upcoming">{{ asset.assetCode }} - {{ asset.name }}</li></ul>
+>>>>>>> viejo/main
       </div>
 
       <div class="card grid grid-3">
@@ -65,6 +78,7 @@ export class ReportesPage {
   employeeAssignments: Assignment[] = [];
   upcoming: Asset[] = [];
   message = '';
+<<<<<<< HEAD
   selectedEmployeeId: number | null = null;
   readonly employeeForm = this.fb.group({ employeeId: [null, [Validators.required, Validators.min(1)]] });
 
@@ -76,4 +90,12 @@ export class ReportesPage {
   employeeIdDisplay(item: Assignment): string | number {
     return item?.employee?.id ?? this.selectedEmployeeId ?? 'desasignado';
   }
+=======
+  readonly employeeForm = this.fb.group({ employeeId: [null, [Validators.required, Validators.min(1)]] });
+
+  loadSummary(): void { this.api.investedSummary().subscribe({ next: (summary) => (this.totalInvested = summary.totalInvested), error: (err) => (this.message = err?.error?.error ?? 'Error') }); }
+  loadEmployeeReport(): void { if (this.employeeForm.invalid) return; this.api.employeeReport(this.employeeForm.getRawValue().employeeId!).subscribe({ next: (rows) => (this.employeeAssignments = rows), error: (err) => (this.message = err?.error?.error ?? 'Error') }); }
+  loadUpcomingDisposals(): void { this.api.upcomingDisposals().subscribe({ next: (rows) => (this.upcoming = rows), error: (err) => (this.message = err?.error?.error ?? 'Error') }); }
+  download(format: 'excel' | 'pdf'): void { this.api.exportInvested(format).subscribe({ next: (blob) => { const ext = format === 'pdf' ? 'pdf' : 'csv'; const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `reporte-bienes-invertidos.${ext}`; a.click(); URL.revokeObjectURL(url); }, error: (err) => (this.message = err?.error?.error ?? 'Error') }); }
+>>>>>>> viejo/main
 }

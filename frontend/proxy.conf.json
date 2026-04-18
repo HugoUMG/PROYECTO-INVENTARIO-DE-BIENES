@@ -1,6 +1,10 @@
 {
   "/api": {
+<<<<<<< HEAD
     "target": "http://localhost:8080",
+=======
+    "target": "https://proyectoweb-wgny.onrender.com",
+>>>>>>> viejo/main
     "secure": false,
     "changeOrigin": true,
     "logLevel": "debug"

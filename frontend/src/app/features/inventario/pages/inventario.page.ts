@@ -24,7 +24,11 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
             <input formControlName="serialNumber" placeholder="Ej. SN-2026-0001" />
           </label>
           <input formControlName="acquisitionDate" type="date" />
+<<<<<<< HEAD
           <label>Valor unitario
+=======
+          <label>Costo de adquisición
+>>>>>>> viejo/main
             <input formControlName="acquisitionCost" type="number" placeholder="Ej. 12999.90" />
           </label>
           <label>Tipo de etiqueta
@@ -33,8 +37,13 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
           <label>Valor de etiqueta
             <input formControlName="tagValue" placeholder="Ej. TAG-0001" />
           </label>
+<<<<<<< HEAD
           <label>Ubicación (opcional)
             <input formControlName="location" placeholder="Por defecto: Almacén central" />
+=======
+          <label>Ubicación
+            <input formControlName="location" placeholder="Ej. Almacén central - Estante B3" />
+>>>>>>> viejo/main
           </label>
           <label>ID de factura
             <input formControlName="purchaseInvoiceId" type="number" placeholder="Ej. 1" />
@@ -44,12 +53,17 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
           </label>
           <button type="submit">Registrar activo</button>
         </form>
+<<<<<<< HEAD
+=======
+        <small class="muted">Estados permitidos en backend: EN_ALMACEN, ASIGNADO, EN_TRASLADO, EN_REVISION, DADO_DE_BAJA.</small>
+>>>>>>> viejo/main
         <p *ngIf="message">{{ message }}</p>
       </div>
 
       <div class="card">
         <div class="between"><h3>Catálogo maestro</h3><button type="button" (click)="loadAssets()">Actualizar</button></div>
         <table *ngIf="assets.length">
+<<<<<<< HEAD
           <thead><tr><th>ID</th><th>Código</th><th>Nombre</th><th>Ubicación</th><th>Estado</th><th>Valor unitario</th><th>QR</th></tr></thead>
           <tbody>
             <tr *ngFor="let asset of assets">
@@ -61,6 +75,10 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
               </td>
             </tr>
           </tbody>
+=======
+          <thead><tr><th>Código</th><th>Nombre</th><th>Estado</th><th>Ubicación</th></tr></thead>
+          <tbody><tr *ngFor="let asset of assets"><td>{{ asset.assetCode }}</td><td>{{ asset.name }}</td><td>{{ asset.status }}</td><td>{{ asset.location }}</td></tr></tbody>
+>>>>>>> viejo/main
         </table>
       </div>
     </section>
@@ -68,10 +86,16 @@ import { AssetsApiService } from '../../../core/services/assets-api.service';
 })
 export class InventarioPage implements OnInit {
   private readonly fb = inject(FormBuilder);
+<<<<<<< HEAD
   readonly api = inject(AssetsApiService);
   assets: Asset[] = [];
   message = '';
   qrVisibleId: number | null = null;
+=======
+  private readonly api = inject(AssetsApiService);
+  assets: Asset[] = [];
+  message = '';
+>>>>>>> viejo/main
 
   readonly assetForm = this.fb.group({
     assetCode: [''],
@@ -82,7 +106,11 @@ export class InventarioPage implements OnInit {
     acquisitionCost: [null, [Validators.required, Validators.min(0.01)]],
     tagType: this.fb.nonNullable.control<'QR' | 'RFID'>('QR', Validators.required),
     tagValue: ['', Validators.required],
+<<<<<<< HEAD
     location: ['Almacén central'],
+=======
+    location: ['', Validators.required],
+>>>>>>> viejo/main
     purchaseInvoiceId: [null, [Validators.required, Validators.min(1)]]
   });
 
@@ -99,15 +127,24 @@ export class InventarioPage implements OnInit {
       acquisitionCost: payload.acquisitionCost!,
       tagType: payload.tagType!,
       tagValue: payload.tagValue!,
+<<<<<<< HEAD
       location: payload.location ?? undefined,
       purchaseInvoiceId: payload.purchaseInvoiceId!
     }).subscribe({ next: () => { this.assetForm.patchValue({ location: 'Almacén central' }); this.loadAssets(); }, error: (err) => (this.message = err?.error?.error ?? 'Error') });
+=======
+      location: payload.location!,
+      purchaseInvoiceId: payload.purchaseInvoiceId!
+    }).subscribe({ next: () => this.loadAssets(), error: (err) => (this.message = err?.error?.error ?? 'Error') });
+>>>>>>> viejo/main
   }
   loadAssets(): void {
     this.api.listAssets().subscribe({ next: (assets) => (this.assets = assets), error: () => (this.message = 'No se pudo cargar inventario') });
   }
+<<<<<<< HEAD
 
   toggleQr(assetId: number): void {
     this.qrVisibleId = this.qrVisibleId === assetId ? null : assetId;
   }
+=======
+>>>>>>> viejo/main
 }
